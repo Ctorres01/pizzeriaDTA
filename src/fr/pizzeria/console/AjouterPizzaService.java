@@ -23,9 +23,20 @@ public class AjouterPizzaService extends  MenuService{
 			System.out.print("\nVeuillez saisir le nom: ");
 			String newPizzaName = scan.nextLine();
 			System.out.print("\nVeuillez saisir le prix: ");
-			double newPizzaPrice = Double.parseDouble(scan.nextLine());
+			
+			String str = scan.nextLine();
+			double newPizzaPrice;
+			if(str.isEmpty()) {
+				newPizzaPrice = 0;
+			} else {
+				newPizzaPrice = Double.parseDouble(str);
+			}
 			System.out.print("\nChoisissez la catégorie de la pizza:\n1.Viande\n2.Sans Viande\n3.Poisson ");
-			CategoriePizza newPizzaCategorie = CategoriePizza.getCategoriefromUserChoice(Integer.parseInt(scan.nextLine()));
+			str = scan.nextLine();
+			if(str.isEmpty()) {
+				str = "-1";
+			}
+			CategoriePizza newPizzaCategorie = CategoriePizza.getCategoriefromUserChoice(Integer.parseInt(str));
 			System.out.println();
 
 			//Ajout de la pizza dans le tableau

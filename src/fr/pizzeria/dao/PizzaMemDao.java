@@ -7,10 +7,30 @@ import fr.pizzeria.console.Pizza;
 import fr.pizzeria.exception.DeletePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.model.CategoriePizza;
 
 public class PizzaMemDao implements IPizzaDao {
 	
 	private List<Pizza> pizzaList = new ArrayList<Pizza>();
+	
+	public PizzaMemDao() {
+		Pizza pizza0 = new Pizza("PEP", "Pépéroni", 12.5, CategoriePizza.VIANDE);
+		Pizza pizza1 = new Pizza("MAR", "Margherita", 14.0, CategoriePizza.SANS_VIANDE);
+		Pizza pizza2 = new Pizza("REI", "La Reine", 11.5, CategoriePizza.VIANDE);
+		Pizza pizza3 = new Pizza("FRO", "La 4 fromages", 12.0, CategoriePizza.SANS_VIANDE);
+		Pizza pizza4 = new Pizza("CAN", "La cannibale", 12.5, CategoriePizza.VIANDE);
+		Pizza pizza5 = new Pizza("SAV", "La savoyarde", 13.0, CategoriePizza.VIANDE);
+		Pizza pizza6 = new Pizza("ORI", "L'orientale", 13.5, CategoriePizza.VIANDE);
+		Pizza pizza7 = new Pizza("NOR", "Nordique", 15.0, CategoriePizza.POISSON);
+		this.pizzaList.add(pizza0);
+		this.pizzaList.add(pizza1);
+		this.pizzaList.add(pizza2);
+		this.pizzaList.add(pizza3);
+		this.pizzaList.add(pizza4);
+		this.pizzaList.add(pizza5);
+		this.pizzaList.add(pizza6);
+		this.pizzaList.add(pizza7);
+	}
 
 	@Override
 	public List<Pizza> findAllPizzas() { 
@@ -33,7 +53,7 @@ public class PizzaMemDao implements IPizzaDao {
 			int index = this.findPizzaIndexByCode(codePizza);
 			pizzaList.remove(index);
 			pizzaList.add(index, pizza);
-			System.out.println("Pizza modifiée aevc succès");
+			System.out.println("Pizza modifiée avec succès");
 		} else {
 			throw new UpdatePizzaException("Aucune pizza ne correspond au code '"+codePizza+"'");
 		}
@@ -68,7 +88,6 @@ public class PizzaMemDao implements IPizzaDao {
 		}
 		return pizzaFound;
 	}
-	
 	
 	//Renvoie -1 si la pizza n'a pas été trouvée
 	@Override
