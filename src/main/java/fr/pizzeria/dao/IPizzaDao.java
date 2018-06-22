@@ -15,8 +15,4 @@ public interface IPizzaDao {
 	Pizza findPizzaByCode(String codePizza);
 	boolean pizzaExists(String codePizza);
 	
-
-	//Méthode ajoutée
-	int findPizzaIndexByCode(String codePizza);
-	
 }

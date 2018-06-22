@@ -1,13 +1,11 @@
 package fr.pizzeria.console;
 
-import java.util.Locale.Category;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.dao.PizzaJdbcDao;
 import fr.pizzeria.dao.PizzaMemDao;
-import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.StockageException;
-import fr.pizzeria.model.CategoriePizza;
 
 public class PizzeriaAdminConsoleApp {
 
@@ -15,8 +13,8 @@ public class PizzeriaAdminConsoleApp {
 
 			Scanner scan = new Scanner(System.in);
 			int menuChoice;
-			IPizzaDao pizzaDao = new PizzaMemDao();
-			
+			IPizzaDao pizzaDao = new PizzaJdbcDao();
+
 			try {
 				do {
 					System.out.println("***** Pizzeria Administration *****\n1. Lister les pizzas\n2. Ajouter une nouvelle pizza\n3. Mettre à jour une pizza\n4. Supprimer une pizza\n5. Sortir");

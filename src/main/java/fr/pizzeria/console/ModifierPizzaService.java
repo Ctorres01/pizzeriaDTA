@@ -3,6 +3,7 @@ package fr.pizzeria.console;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.exception.UnknownCategorieException;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 
@@ -34,18 +35,29 @@ public class ModifierPizzaService extends  MenuService{
 
 
 			//Demande à l'utilisateur les nouvelles informations de la pizza
-			System.out.print("Veuillez saisir le nouveau code: ");
-			String modifiedPizzaCode = scan.nextLine();
 			System.out.print("\nVeuillez saisir le nouveau nom: ");
 			String modifiedPizzaName = scan.nextLine();
 			System.out.print("\nVeuillez saisir le nouveau prix: ");
 			double modifiedPizzaPrice = Double.parseDouble(scan.nextLine());
-			System.out.print("\nVeuillez saisir la nouvelle catégorie de pizza: ");
-			CategoriePizza modifiedPizzaCategorie = CategoriePizza.valueOf(scan.nextLine());
+			System.out.print("\nChoisissez la catégorie de la pizza:\n1.Viande\n2.Sans Viande\n3.Poisson ");
+			String str = scan.nextLine();
+			if(str.isEmpty()) {
+				str = "-1";
+			}
+			CategoriePizza modifiedPizzaCategorie;
+			try {
+				modifiedPizzaCategorie = CategoriePizza.getCategoriefromNumber(Integer.parseInt(str));
+				//Modification des informations de la pizza
+				pizzaDao.updatePizza(pizzaChoice, new Pizza(pizzaChoice, modifiedPizzaName, modifiedPizzaPrice, modifiedPizzaCategorie));
+			} catch (NumberFormatException e) {
+				System.out.println("Format Invalide");
+				e.printStackTrace();
+			} catch (UnknownCategorieException e) {
+				e.printStackTrace();
+			}
 			System.out.println();
 
-			//Modification des informations de la pizza
-			pizzaDao.updatePizza(pizzaChoice, new Pizza(modifiedPizzaCode, modifiedPizzaName, modifiedPizzaPrice, modifiedPizzaCategorie));
+			
 		} catch (UpdatePizzaException e) {
 			e.printStackTrace();
 		}

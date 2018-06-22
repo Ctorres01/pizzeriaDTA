@@ -77,7 +77,22 @@ public class PizzaMemDaoTest {
 		Assert.assertFalse(dao.pizzaExists("POM"));
 	}
 	
+	@Test
+	public void testFindPizzaIndexByCode() {
+		int indexFound = dao.findPizzaIndexByCode("PEP");
+		Assert.assertEquals(indexFound, 0);
+		
+		indexFound = dao.findPizzaIndexByCode("SAV");
+		Assert.assertEquals(indexFound, 5);
+		
+		indexFound = dao.findPizzaIndexByCode("POM");
+		Assert.assertEquals(indexFound, -1);
+	}
 	
+	@Test
+	public void testFindPizzaByCode() {
+		Assert.assertEquals(dao.findPizzaByCode("PEP"), new Pizza("PEP", "Pépéroni", 12.5, CategoriePizza.VIANDE));
+	}
 	
 	
 	

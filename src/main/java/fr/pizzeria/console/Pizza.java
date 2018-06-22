@@ -14,6 +14,7 @@ public class Pizza {
 	@ToString
 	private String libelle;
 	private double prix;
+	@ToString
 	private CategoriePizza categorie;
 	private static int currentId = 0;
 
@@ -140,8 +141,6 @@ public class Pizza {
 			if (other.code != null)
 				return false;
 		} else if (!code.equals(other.code))
-			return false;
-		if (id != other.id)
 			return false;
 		if (libelle == null) {
 			if (other.libelle != null)

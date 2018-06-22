@@ -36,7 +36,7 @@ public class AjouterPizzaService extends  MenuService{
 			if(str.isEmpty()) {
 				str = "-1";
 			}
-			CategoriePizza newPizzaCategorie = CategoriePizza.getCategoriefromUserChoice(Integer.parseInt(str));
+			CategoriePizza newPizzaCategorie = CategoriePizza.getCategoriefromNumber(Integer.parseInt(str));
 			System.out.println();
 
 			//Ajout de la pizza dans le tableau
