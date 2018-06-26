@@ -2,21 +2,41 @@ package fr.pizzeria.console;
 
 import java.lang.reflect.Field;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.utils.ToString;
 
+@Entity
+@Table(name="pizza")
 public class Pizza {
 
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@ToString
 	private int id;
+	
 	@ToString(upperCase=true)
+	@Column(name="code", nullable = false, unique = true)
 	private String code;
+	
 	@ToString
 	private String libelle;
 	private double prix;
+	
 	@ToString
 	private CategoriePizza categorie;
 	private static int currentId = 0;
+	
+	public Pizza() {
+		super();
+	}
 
 	public Pizza(String code, String libelle, double prix, CategoriePizza categorie) {
 		this.code = code;
@@ -27,9 +47,7 @@ public class Pizza {
 		Pizza.currentId += 1;
 	}
 
-	public String getLibelle() {
-		return libelle;
-	}
+	
 
 	public Pizza(String code, String libelle, double prix, CategoriePizza categorie, int id) {
 		this(code, libelle, prix, categorie);
@@ -71,6 +89,10 @@ public class Pizza {
 	public int getId() {
 		return this.id;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public static int getCurrentId() {
 		return currentId;
@@ -78,10 +100,6 @@ public class Pizza {
 
 	public static void setCurrentId(int currentId) {
 		Pizza.currentId = currentId;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getCode() {
@@ -98,6 +116,10 @@ public class Pizza {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+	
+	public String getLibelle() {
+		return libelle;
 	}
 
 	public void setLibelle(String libelle) {

@@ -110,4 +110,8 @@ public class PizzaMemDao implements IPizzaDao {
 		return pizzaIndex;
 	}
 
+	@Override
+	public void close() {
+	}
+
 }

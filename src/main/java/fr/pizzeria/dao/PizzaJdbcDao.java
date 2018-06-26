@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -240,6 +239,10 @@ public class PizzaJdbcDao implements IPizzaDao {
 			System.out.println("Commit Impossible");
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void close() {
 	}
 
 }

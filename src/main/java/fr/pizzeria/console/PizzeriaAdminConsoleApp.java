@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaJdbcDao;
+import fr.pizzeria.dao.PizzaJpaDao;
 import fr.pizzeria.dao.PizzaMemDao;
 import fr.pizzeria.exception.StockageException;
 
@@ -13,7 +14,7 @@ public class PizzeriaAdminConsoleApp {
 
 			Scanner scan = new Scanner(System.in);
 			int menuChoice;
-			IPizzaDao pizzaDao = new PizzaJdbcDao();
+			IPizzaDao pizzaDao = new PizzaJpaDao();
 
 			try {
 				do {
@@ -27,6 +28,7 @@ public class PizzeriaAdminConsoleApp {
 					}
 				} while (menuChoice != 5);
 				scan.close();
+				pizzaDao.close();
 			}catch (StockageException e) {
 				e.printStackTrace();
 			}
